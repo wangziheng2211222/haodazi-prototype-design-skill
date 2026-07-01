@@ -1,0 +1,4 @@
+interface:
+  display_name: "好搭子原型设计"
+  short_description: "按好搭子流程生成可评审高保真原型"
+  default_prompt: "Use $haodazi-prototype-design to turn this PRD, screenshots, or Figma context into a multi-page reviewable prototype."
