@@ -5,6 +5,9 @@ Use this before final delivery or when asked to review a generated prototype.
 ## Requirement Coverage
 
 - Every explicit requirement is mapped to a page, flow, state, or open issue.
+- Every requirement card has a stable `requirementId`.
+- Clicking or selecting a requirement card reveals a detail view tied back to original source text or a precise source pointer.
+- Requirement details show parsed intent, acceptance criteria, impacted `pageId`s, impacted states, and coverage status.
 - Business objects use consistent names across list, details, forms, and dialogs.
 - Roles and permissions appear in UI states when the requirement mentions them.
 - Required fields, optional fields, validation, and destructive actions are visible.
@@ -22,6 +25,9 @@ Use this before final delivery or when asked to review a generated prototype.
 ## Visual Coherence
 
 - Screenshots or Figma evidence influence layout density, typography, color, radius, spacing, and component patterns.
+- Product-specific design systems are loaded when product names such as 蝉圈圈, 蝉妈妈, or 蝉镜 are present.
+- 蝉圈圈 output follows coral-orange primary actions, pale gray workbench background, white surfaces, compact tables/forms, PingFang/system typography, and light borders.
+- 蝉妈妈 output may temporarily use 蝉圈圈 design rules only when no 蝉妈妈-specific reference exists, and the fallback is disclosed.
 - The result avoids falling back to a generic blue-white admin template when a stronger visual reference exists.
 - Components share one design language across pages.
 - Page titles, table density, form rhythm, and button hierarchy stay consistent.
