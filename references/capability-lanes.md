@@ -7,6 +7,7 @@
 | 输入或请求 | 能力通道 | 主要产物 |
 | --- | --- | --- |
 | PRD、需求纪要、产品想法 | 需求生成原型 | `page-map.json`、`requirements-map.json`、`interaction-blueprint.json`、高保真页面 |
+| 用户要求先看模块、方案、页面组或拆解 | 模块评审确认 | `module-review-state.json`、`page-map.json`、`requirements-map.json` |
 | 一张或多张截图 | 截图风格复刻 | `visual-dna.json`、`design-tokens.json`、视觉 QA 说明 |
 | Figma 文件/画框 | Figma 还原 | `figma-restoration-context.json`、画框截图、资产清单、视觉 QA 说明 |
 | 生成后的用户反馈 | 原型评审修复 | `review-issues`、`repair-plan`、修复后页面、`repair-history.json` |
@@ -24,6 +25,7 @@
 - `moduleCoverage`
 - `interactionBlueprint`
 - `requirementsMap`
+- 可选 `moduleReviewState`
 - `highFidelityPages`
 - `coverageWarnings`
 
@@ -33,6 +35,29 @@
 - 保留模块拆解和 `pageId` 推理，但不要强迫用户先选择模块。
 - 同一评审面内的列表、详情、新增/编辑弹窗、抽屉和局部状态，要绑定到同一个 `pageId`。
 - 需求卡必须连接原始文本和生成覆盖情况。
+- 用户明确要求先确认模块或方案时，先进入模块评审确认，不要直接越过用户确认。
+
+## 模块评审确认
+
+用户要求查看拆解、选择方案、确认页面组、优化此组、追加拆解，或任务复杂到必须先确认页面边界时使用。
+
+输出：
+
+- `moduleGroups`
+- `modules`
+- `schemes`
+- `pageIds`
+- `coverageWarnings`
+- `moduleReviewState`
+
+规则：
+
+- 模块评审的目标是确认需求理解、页面边界和方案选择，不是预览视觉稿。
+- 每个模块记录标题、描述、优先级、变更类型、所属 `pageId`、关键字段、状态、流程、权限、异常和覆盖风险。
+- 同 `pageId` 下的列表、详情、弹窗、抽屉、表单和状态模块要联动选择。
+- “优化此组”必须携带当前 `pageId`、该页面组全部模块、原始需求、截图/Figma/知识库上下文和用户反馈重新分析。
+- 页面边界变化时，可以返回新的 `pageId`，但必须重新生成或校验交互蓝图。
+- 被跳过、被替换、被用户确认的模块都要记录，供后续高保真使用。
 
 ## 截图风格复刻
 

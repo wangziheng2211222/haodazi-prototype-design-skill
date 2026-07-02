@@ -9,12 +9,15 @@
 - `prototype.html` 或仓库原生页面文件：可运行的高保真评审原型。
 - `page-map.json`：页面 ID、页面名、路由标签、页面职责和评审目的。
 - `requirements-map.json`：需求卡、原文位置、解析意图和生成覆盖。
+- `module-review-state.json`：模块分组、方案选择、页面组确认和用户修改意见。
 - `interaction-blueprint.json`：跨页面流程、状态流转、弹窗、抽屉和关键交互。
 - `visual-dna.json`：截图/风格分析，包括主参考、辅助参考、冲突点和 avoidances。
 - `figma-restoration-context.json`：使用 Figma 时记录画框、节点、token、资产和截图上下文。
 - `review-notes.md`：假设、未覆盖问题、覆盖警告和建议评审议程。
 - `quality-report.json`：需求覆盖、运行时、视觉 QA 和修复状态。
+- `acceptance-summary.json`：从用户任务角度归纳覆盖模块、未覆盖模块、评审风险和下一步。
 - `repair-history.json`：修复计划、修复页面和修复原因。
+- `agent-runs.json`：阶段状态、降级、重试、质量结果和修复次数。
 - `design-tokens.json`：从截图或 Figma 推导出的颜色、字体、圆角、阴影、密度、间距和组件模式。
 - `component-inventory.json`：生成组件清单和可复用模式。
 - `design-system-used.md`：使用的产品设计规范、fallback 状态和偏离点。
@@ -81,6 +84,112 @@
       "coverageStatus": "covered|partial|open"
     }
   ]
+}
+```
+
+## 模块评审状态 Schema
+
+```json
+{
+  "moduleGroups": [
+    {
+      "groupId": "lead-workbench-group",
+      "pageId": "lead-workbench",
+      "title": "线索工作台",
+      "description": "同一真实页面内的列表、筛选、详情抽屉和新建弹窗。",
+      "linkedSelection": true,
+      "modules": ["MOD-001", "MOD-002"],
+      "coverageWarnings": ["缺少批量操作规则"]
+    }
+  ],
+  "modules": [
+    {
+      "moduleId": "MOD-001",
+      "title": "线索列表",
+      "description": "展示线索、状态和负责人。",
+      "changeType": "create|update|remove|unknown",
+      "priority": "P0|P1|P2|P3",
+      "pageId": "lead-workbench",
+      "fields": ["线索名称", "状态", "负责人"],
+      "states": ["empty", "loading", "error", "permission-denied"],
+      "flows": ["筛选线索", "打开详情"],
+      "schemes": [
+        {
+          "schemeId": "A",
+          "title": "表格 + 详情抽屉",
+          "tradeoff": "适合高密度运营工作台。"
+        }
+      ],
+      "sourceRequirementIds": ["REQ-001"]
+    }
+  ],
+  "userSelections": {
+    "selectedModuleIds": ["MOD-001"],
+    "selectedSchemes": {
+      "MOD-001": "A"
+    },
+    "skippedModuleIds": [],
+    "notes": ["用户希望先保留详情抽屉。"]
+  },
+  "pageBoundaryStatus": "confirmed|needs-review|changed"
+}
+```
+
+## 交互蓝图 Schema
+
+```json
+{
+  "productPositioning": "string",
+  "navigationModel": {
+    "type": "left-sidebar|top-nav|tabs|breadcrumb|mixed",
+    "items": [
+      {
+        "label": "线索",
+        "pageId": "lead-workbench"
+      }
+    ]
+  },
+  "pageHierarchy": [
+    {
+      "pageId": "lead-workbench",
+      "parentPageId": "",
+      "level": 1,
+      "role": "primary-workbench"
+    }
+  ],
+  "criticalFlows": [
+    {
+      "name": "新建线索并跟进",
+      "steps": [
+        {
+          "pageId": "lead-workbench",
+          "action": "点击新建"
+        }
+      ]
+    }
+  ],
+  "crossPageActions": [
+    {
+      "fromPageId": "overview",
+      "toPageId": "lead-workbench",
+      "trigger": "点击待处理线索"
+    }
+  ],
+  "commonInteractionRules": [
+    "删除前二次确认",
+    "保存成功后使用 ElMessage 提示"
+  ],
+  "stateRules": [
+    {
+      "state": "empty",
+      "displayRule": "解释空状态原因并提供主操作"
+    }
+  ],
+  "visualConstraints": ["紧凑表格", "右侧详情抽屉"],
+  "fallback": {
+    "isDegraded": false,
+    "reason": ""
+  }
 }
 ```
 
@@ -213,6 +322,53 @@
       "affectedPageIds": ["string"],
       "changedArtifacts": ["string"],
       "reason": "string"
+    }
+  ]
+}
+```
+
+## 验收摘要 Schema
+
+```json
+{
+  "acceptanceSummary": {
+    "taskGoal": "string",
+    "overallStatus": "passed|partial|blocked",
+    "coveredModules": ["MOD-001"],
+    "uncoveredModules": [
+      {
+        "moduleId": "MOD-009",
+        "reason": "需求缺少规则，已列为评审问题。"
+      }
+    ],
+    "reviewRisks": [
+      {
+        "severity": "P0|P1|P2|P3",
+        "pageId": "lead-workbench",
+        "risk": "批量删除权限未明确。"
+      }
+    ],
+    "suggestedNextActions": ["确认批量操作权限", "补充异常状态规则"]
+  }
+}
+```
+
+## Agent Run Schema
+
+```json
+{
+  "agentRuns": [
+    {
+      "runId": "run-001",
+      "stage": "context|decomposition|blueprint|module-review|high-fidelity|quality|acceptance|repair",
+      "status": "pending|running|waiting-user|passed|degraded|failed|repaired",
+      "summary": "正在整理交互蓝图。",
+      "startedAt": "ISO-8601",
+      "endedAt": "ISO-8601",
+      "affectedPageIds": ["lead-workbench"],
+      "qualityIssueIds": [],
+      "repairCount": 0,
+      "degradationReason": ""
     }
   ]
 }
