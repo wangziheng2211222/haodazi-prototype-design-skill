@@ -6,6 +6,7 @@
 
 | 输入或请求 | 能力通道 | 主要产物 |
 | --- | --- | --- |
+| 模糊想法、短需求、不知道怎么描述 | 主动假设补全 | `assumption-card.json`、`page-map.json`、`requirements-map.json`、评审假设 |
 | PRD、需求纪要、产品想法 | 需求生成原型 | `page-map.json`、`requirements-map.json`、`interaction-blueprint.json`、高保真页面 |
 | 用户要求先看模块、方案、页面组或拆解 | 模块评审确认 | `module-review-state.json`、`page-map.json`、`requirements-map.json` |
 | 一张或多张截图 | 截图风格复刻 | `visual-dna.json`、`design-tokens.json`、视觉 QA 说明 |
@@ -24,6 +25,7 @@
 - `pageIds`
 - `moduleCoverage`
 - `interactionBlueprint`
+- `assumptionCard`
 - `requirementsMap`
 - 可选 `moduleReviewState`
 - `highFidelityPages`
@@ -31,11 +33,41 @@
 
 规则：
 
+- 输入不完整时先主动补齐合理业务闭环，不要把用户拉进长问卷。
 - 理解需求后直接生成完整高保真页面。
 - 保留模块拆解和 `pageId` 推理，但不要强迫用户先选择模块。
 - 同一评审面内的列表、详情、新增/编辑弹窗、抽屉和局部状态，要绑定到同一个 `pageId`。
 - 需求卡必须连接原始文本和生成覆盖情况。
 - 用户明确要求先确认模块或方案时，先进入模块评审确认，不要直接越过用户确认。
+
+## 主动假设补全
+
+用户只给一句想法、需求明显不完整，或不知道怎么描述需求时使用。目标是帮用户把需求先变成可生成版本，而不是把问题抛回用户。
+
+输出：
+
+- `assumptionCard`
+- `assumptions`
+- `inferredRoles`
+- `inferredCoreFlow`
+- `inferredPages`
+- `inferredStates`
+- `blockingQuestion`，仅在确实无法继续时输出
+
+规则：
+
+- 默认不提问，先生成主动假设卡。
+- 主动假设卡写成“我将按以下方向生成”，不要写成问卷。
+- 每张假设卡最多包含 5 项：产品类型、主要角色、核心流程、页面范围、关键状态/规则。
+- 假设要具体到能改变页面结构，例如“销售团队客户管理工作台”，不要写“后台系统”这种空泛描述。
+- 用户不回复时，按假设继续生成，并把假设写入需求卡、页面地图和评审说明。
+- 用户纠正时，只改对应假设和受影响 `pageId`，不要推倒全部结果。
+
+只有三类情况先问一个阻塞问题：
+
+- 业务类型完全无法判断。
+- 平台形态会显著影响布局和组件，但输入没有线索。
+- 输入互相冲突，导致核心方向无法选择。
 
 ## 模块评审确认
 

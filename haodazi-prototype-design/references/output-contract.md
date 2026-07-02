@@ -7,6 +7,7 @@
 完整原型设计任务可按需要产出以下文件：
 
 - `prototype.html` 或仓库原生页面文件：可运行的高保真评审原型。
+- `assumption-card.json`：主动假设卡，记录系统为模糊需求补齐的产品方向、角色、流程、页面和状态。
 - `page-map.json`：页面 ID、页面名、路由标签、页面职责和评审目的。
 - `requirements-map.json`：需求卡、原文位置、解析意图和生成覆盖。
 - `module-review-state.json`：模块分组、方案选择、页面组确认和用户修改意见。
@@ -26,6 +27,53 @@
 - `figma-redraw-brief.md`：后续 Figma 重绘或插件导入使用的结构化设计说明。
 
 轻量聊天任务可直接在回复中概括这些部分，不一定写文件。
+
+## 主动假设卡 Schema
+
+```json
+{
+  "assumptionCard": {
+    "mode": "default-continue|needs-user-confirmation",
+    "message": "我先按以下方向生成；如果方向不对，直接告诉我，否则继续。",
+    "productType": {
+      "value": "销售团队客户管理工作台",
+      "confidence": "high|medium|low",
+      "source": "user-explicit|inferred|design-system|screenshot|figma"
+    },
+    "primaryRoles": [
+      {
+        "role": "销售",
+        "source": "inferred"
+      },
+      {
+        "role": "销售主管",
+        "source": "inferred"
+      }
+    ],
+    "coreFlow": {
+      "summary": "录入客户 → 跟进客户 → 转化成交",
+      "source": "inferred"
+    },
+    "pageScope": {
+      "included": ["客户工作台", "客户详情", "跟进记录", "数据看板", "规则设置"],
+      "excluded": ["合同管理", "财务回款"],
+      "source": "inferred"
+    },
+    "keyStates": [
+      {
+        "state": "空数据",
+        "reason": "评审初始录入场景。"
+      },
+      {
+        "state": "无权限",
+        "reason": "销售和主管权限不同。"
+      }
+    ],
+    "blockingQuestion": "",
+    "userCanOverride": true
+  }
+}
+```
 
 ## 页面地图 Schema
 
@@ -64,7 +112,7 @@
     {
       "sourceId": "prd-main",
       "title": "需求文档",
-      "type": "prd|notes|figma|screenshot|user-message",
+      "type": "prd|notes|figma|screenshot|user-message|assumption",
       "sourcePointer": "文件、URL、章节、页码或消息引用"
     }
   ],
@@ -76,11 +124,13 @@
       "sourceId": "prd-main",
       "sourcePointer": "第 2.1 节 / 第 3 页 / 第 4 段",
       "sourceExcerpt": "短原文摘录或来源线索。",
+      "sourceKind": "explicit|assumed|derived",
       "parsedIntent": "产品必须支持什么。",
       "acceptanceCriteria": ["评审者可以验证的条件。"],
       "impactedPageIds": ["lead-workbench"],
       "impactedStates": ["empty", "error", "permission-denied"],
       "openQuestions": ["如有未决问题，写在这里。"],
+      "assumptionRefs": ["assumptionCard.coreFlow"],
       "coverageStatus": "covered|partial|open"
     }
   ]
