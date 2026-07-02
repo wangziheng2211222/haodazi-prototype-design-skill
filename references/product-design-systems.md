@@ -1,36 +1,36 @@
-# Product Design Systems
+# 产品设计规范
 
-Load this reference when a task names a known product family, asks to follow a design规范/design system, or lacks screenshots/Figma but expects product-native styling.
+当任务提到已知产品线、要求遵循设计规范，或没有截图/Figma 但需要产品原生视觉风格时，读取本文件。
 
-## Selection Rules
+## 选择规则
 
-1. Prefer explicit Figma or screenshot evidence for the exact target screen.
-2. Use the product design system for missing tokens, component behavior, layout density, and fallback styling.
-3. Keep PRD and requirement text as the business-logic source of truth.
-4. Record which design system was used in `design-tokens.json` or the final notes.
-5. If a fallback design system is used, say so clearly in assumptions or delivery notes.
+1. 如果有目标页面的 Figma 或截图证据，优先使用这些精确证据。
+2. 产品设计规范用于补齐缺失的 token、组件行为、布局密度和 fallback 样式。
+3. PRD 和需求文本始终是业务逻辑最高优先级来源。
+4. 在 `design-tokens.json` 或最终说明中记录使用了哪个设计规范。
+5. 如果使用 fallback 设计规范，要在假设或交付说明中明确说明。
 
-## Known Products
+## 已知产品
 
-| Product hint | Design system reference | Rule |
+| 产品线索 | 设计规范参考 | 规则 |
 | --- | --- | --- |
-| 蝉圈圈 / Chanquanquan | `references/chanquanquan-design-system.md` | Load directly. |
-| 蝉妈妈 / Chanmama | `references/chanquanquan-design-system.md` until a dedicated Chanmama reference exists | Use as temporary fallback and label it as fallback. |
-| 蝉镜 / Chanjing | Future product-specific reference | If no dedicated reference exists, ask for screenshots/Figma or use neutral Haodazi defaults. Do not silently use 蝉圈圈 unless the user asks. |
+| 蝉圈圈 / Chanquanquan | `references/chanquanquan-design-system.md` | 直接加载。 |
+| 蝉妈妈 / Chanmama | 暂无专属规范时使用 `references/chanquanquan-design-system.md` | 作为临时 fallback 使用，并明确标注。 |
+| 蝉镜 / Chanjing | 预留未来专属规范 | 若暂无专属规范，先要求截图/Figma，或使用中性好搭子默认风格。除非用户明确允许，否则不要自动套用蝉圈圈。 |
 
-## Output Requirements
+## 输出要求
 
-When using a product design system, include:
+使用产品设计规范时，输出中应包含：
 
-- `designSystem.product`: product family inferred or provided by the user.
-- `designSystem.reference`: reference file or source used.
-- `designSystem.isFallback`: boolean.
-- `designSystem.fallbackReason`: short reason when fallback is true.
-- Design tokens derived from the loaded reference.
+- `designSystem.product`：用户提供或系统推断的产品线。
+- `designSystem.reference`：使用的参考文件或来源。
+- `designSystem.isFallback`：是否为 fallback。
+- `designSystem.fallbackReason`：fallback 原因。
+- 从该设计规范提取或推导的 design tokens。
 
-## Conflict Rules
+## 冲突规则
 
-- Figma target frame overrides product design-system defaults for that frame.
-- Screenshot visual evidence overrides generic defaults but not Figma node evidence.
-- Product design system overrides generic Element Plus styling.
-- Requirement logic overrides visual references when business rules conflict with visuals.
+- Figma 目标画框覆盖产品设计规范默认值。
+- 截图视觉证据覆盖通用默认值，但不覆盖 Figma 节点证据。
+- 产品设计规范覆盖通用 Element Plus 风格。
+- 需求逻辑与视觉参考冲突时，业务规则服从需求。

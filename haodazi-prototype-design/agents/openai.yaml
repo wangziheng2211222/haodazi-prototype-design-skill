@@ -1,4 +1,4 @@
 interface:
   display_name: "好搭子原型设计"
   short_description: "生成带需求追踪的高保真评审原型"
-  default_prompt: "Use $haodazi-prototype-design to turn this PRD into a source-traceable multi-page prototype with requirement cards and the right product design system."
+  default_prompt: "使用 $haodazi-prototype-design 把这份 PRD 生成带需求卡、原文追踪和产品设计规范的多页面高保真评审原型。"

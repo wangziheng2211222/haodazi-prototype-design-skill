@@ -1,22 +1,22 @@
-# Capability Lanes
+# 能力分流
 
-Use this reference to keep Haodazi prototype-design work organized by user-facing business capability, not by internal agent roles.
+用本参考文件把好搭子原型设计工作组织成用户能理解的业务能力，而不是内部 agent 工种。
 
-## Capability Routing
+## 能力路由
 
-| Input or request | Capability lane | Primary output |
+| 输入或请求 | 能力通道 | 主要产物 |
 | --- | --- | --- |
-| PRD, notes, product idea | Requirement-to-prototype | `page-map.json`, `requirements-map.json`, `interaction-blueprint.json`, high-fidelity pages |
-| One or more screenshots | Screenshot style replication | `visual-dna.json`, `design-tokens.json`, visual QA notes |
-| Figma file/frame | Figma restoration | `figma-restoration-context.json`, frame screenshots, asset manifest, visual QA notes |
-| User feedback after generation | Review repair | `review-issues`, `repair-plan`, patched pages, `repair-history.json` |
-| Design/dev/Figma handoff | Delivery assets | `component-inventory.json`, `implementation-notes.md`, `figma-redraw-brief.md` |
+| PRD、需求纪要、产品想法 | 需求生成原型 | `page-map.json`、`requirements-map.json`、`interaction-blueprint.json`、高保真页面 |
+| 一张或多张截图 | 截图风格复刻 | `visual-dna.json`、`design-tokens.json`、视觉 QA 说明 |
+| Figma 文件/画框 | Figma 还原 | `figma-restoration-context.json`、画框截图、资产清单、视觉 QA 说明 |
+| 生成后的用户反馈 | 原型评审修复 | `review-issues`、`repair-plan`、修复后页面、`repair-history.json` |
+| 设计/开发/Figma 交付 | 交付资产 | `component-inventory.json`、`implementation-notes.md`、`figma-redraw-brief.md` |
 
-## Requirement-To-Prototype
+## 需求生成原型
 
-Default lane. Use it for every full prototype task.
+默认能力。完整原型任务都要经过这条能力。
 
-Internal outputs:
+内部产物：
 
 - `inputSummary`
 - `pageMap`
@@ -27,18 +27,18 @@ Internal outputs:
 - `highFidelityPages`
 - `coverageWarnings`
 
-Rules:
+规则：
 
-- Generate complete high-fidelity pages after understanding the requirements.
-- Keep module decomposition and `pageId` reasoning available, but do not force users to choose modules first.
-- Bind list, details, create/edit dialogs, drawers, and local state variants to the same `pageId` when they are one review surface.
-- Keep requirement cards connected to source text and generated coverage.
+- 理解需求后直接生成完整高保真页面。
+- 保留模块拆解和 `pageId` 推理，但不要强迫用户先选择模块。
+- 同一评审面内的列表、详情、新增/编辑弹窗、抽屉和局部状态，要绑定到同一个 `pageId`。
+- 需求卡必须连接原始文本和生成覆盖情况。
 
-## Screenshot Style Replication
+## 截图风格复刻
 
-Use when screenshots, existing pages, product references, or visual examples are provided.
+用户提供截图、已有页面、产品参考或视觉样例时使用。
 
-Outputs:
+输出：
 
 - `styleSummary`
 - `visualDna`
@@ -48,21 +48,21 @@ Outputs:
 - `densityRules`
 - `assetHints`
 - `avoidances`
-- `visualDiffs` when a generated preview can be compared
+- 如果可对比生成预览，则输出 `visualDiffs`
 
-Rules:
+规则：
 
-- Treat screenshots as visual evidence by default; do not ask whether to reference or reuse them.
-- With multiple screenshots, choose a primary reference, auxiliary references, and conflict notes.
-- Extract layout density, navigation shape, hierarchy, component style, color, typography, radius, shadow, border, spacing, and state treatment.
-- Do not fall back to generic blue-white admin UI when screenshots show a stronger visual language.
-- If screenshot visuals conflict with requirements, keep business logic from requirements and visual language from screenshots.
+- 默认把截图当作视觉证据，不再问“参考还是复用”。
+- 多截图时，选择主参考、辅助参考，并记录冲突点。
+- 提取布局密度、导航形态、信息层级、组件风格、颜色、字体、圆角、阴影、描边、间距和状态处理。
+- 截图有明确视觉语言时，不要退回通用蓝白后台。
+- 截图视觉与需求冲突时，业务逻辑服从需求，视觉语言参考截图。
 
-## Figma Restoration
+## Figma 还原
 
-Use when the user provides a Figma link, specific frame, node ID, file key, Figma-exported context, or asks for Figma-style restoration.
+用户提供 Figma 链接、具体画框、node ID、file key、Figma 导出上下文，或要求 Figma 还原时使用。
 
-Outputs:
+输出：
 
 - `figmaFileSummary`
 - `targetFrames`
@@ -75,68 +75,68 @@ Outputs:
 - `figmaRestorationContext`
 - `visualDiffs`
 
-Rules:
+规则：
 
-- Prefer specific frame/node evidence over screenshot guesses and product design-system defaults.
-- Parse Figma URL intent: file key, node ID, selected frame, and access constraints.
-- If the file is large and no target frame is specified, ask the user to choose a target frame before trying to restore everything.
-- Read or preserve Auto Layout, constraints, dimensions, colors, typography, radius, shadow, stroke, opacity, components, instances, and assets when available.
-- Export or use target frame screenshots as visual QA baselines when possible.
-- Do not approximate Figma 1:1 restoration by only doing screenshot style replication.
-- Do not let Element Plus default styling override the Figma visual target; use Element Plus as runtime components while preserving layout and visual intent.
+- 优先使用具体 frame/node 证据，而不是截图猜测或产品设计规范默认值。
+- 解析 Figma URL 意图：file key、node ID、选中画框和权限约束。
+- 如果文件很大且没有指定目标画框，先让用户选择目标画框，不要试图一次还原全部。
+- 在可用时读取或保留 Auto Layout、约束、尺寸、颜色、字体、圆角、阴影、描边、透明度、组件、实例和资产。
+- 尽量导出或使用目标画框截图作为视觉 QA 基准。
+- 不要把 Figma 1:1 还原简化成截图风格复刻。
+- 不要让 Element Plus 默认样式覆盖 Figma 视觉目标；Element Plus 只是运行时组件，布局和视觉意图仍要贴近 Figma。
 
-## Review Repair
+## 原型评审修复
 
-Use after a high-fidelity result exists or when the user asks to revise a prototype.
+已有高保真结果后，或用户要求修改原型时使用。
 
-Classify feedback first:
+先分类反馈：
 
-- Requirement gap: missing rule, page, role, field, flow, or state.
-- Visual deviation: layout, color, typography, spacing, radius, shadow, component, or asset mismatch.
-- Interaction issue: navigation, modal/drawer behavior, confirmation, feedback, disabled state, or form validation.
-- Field/state issue: naming mismatch, enum mismatch, status transition, permission, empty/error/loading state.
-- Missing page: new page or route needed.
-- Delivery-asset request: user needs handoff material rather than page code changes.
+- 需求缺口：缺规则、页面、角色、字段、流程或状态。
+- 视觉偏差：布局、颜色、字体、间距、圆角、阴影、组件或资产不匹配。
+- 交互问题：导航、弹窗/抽屉行为、确认、反馈、禁用态或表单校验。
+- 字段/状态问题：命名不一致、枚举不一致、状态流转、权限、空/错/加载态。
+- 缺失页面：需要新增页面或路由。
+- 交付资产需求：用户需要交付材料，而不是改页面代码。
 
-Repair rules:
+修复规则：
 
-- Patch the smallest affected page, area, interaction, or token.
-- Preserve unrelated pages and business logic.
-- If the fix changes shared navigation, shared fields, or shared status enums, update affected pages consistently.
-- Record `repairPlan`, `patchedPages`, and `repairHistory`.
+- 只修最小受影响页面、区域、交互或 token。
+- 保留无关页面和业务逻辑。
+- 如果修复影响共享导航、共享字段或共享状态枚举，要同步更新受影响页面。
+- 记录 `repairPlan`、`patchedPages` 和 `repairHistory`。
 
-## Delivery Assets
+## 交付资产
 
-Use when the user needs design continuation, Figma redraw, development estimation, review materials, or handoff beyond the runnable prototype.
+当用户需要设计继续改、Figma 重绘、开发估算、评审材料或原型之外的交付内容时使用。
 
-Outputs:
+输出：
 
-- Design style summary.
-- Design tokens: colors, typography, spacing, radius, shadow, components, states, icons, assets.
-- Component inventory: buttons, tables, cards, forms, dialogs, drawers, tags, navigation, charts, empty/error/loading states.
-- Page structure and flows.
-- Development notes: data objects, API assumptions, state enums, permissions, interaction notes, risks, and open questions.
-- Figma redraw brief or intermediate node description for later Figma plugin/import work.
+- 设计风格摘要。
+- 设计 token：颜色、字体、间距、圆角、阴影、组件、状态、图标、资产。
+- 组件清单：按钮、表格、卡片、表单、弹窗、抽屉、标签、导航、图表、空/错/加载态。
+- 页面结构和流程。
+- 开发说明：数据对象、API 假设、状态枚举、权限、交互说明、风险和未决问题。
+- Figma 重绘说明，或后续 Figma 插件/导入使用的中间节点描述。
 
-Rules:
+规则：
 
-- Delivery assets should be generated after the prototype unless the user only asks for planning.
-- Keep delivery assets structured enough for design and engineering to reuse.
-- Explain why major design choices were made, not only what code was generated.
+- 除非用户只要规划，否则交付资产应在原型之后生成。
+- 交付资产要足够结构化，方便设计和研发复用。
+- 解释关键设计选择的原因，而不是只给代码。
 
-## Visual QA
+## 视觉 QA
 
-Use visual QA when screenshots/Figma are provided or when the user questions visual fidelity.
+提供截图/Figma，或用户质疑视觉还原度时使用。
 
-Outputs:
+输出：
 
 - `quality-report.json`
 - `visual-diffs`
-- optional similarity score if the user asks for visible scoring
-- targeted repair suggestions
+- 如果用户要求可见评分，则给相似度评分
+- 定向修复建议
 
-Rules:
+规则：
 
-- Compare against the most specific visual baseline: Figma frame first, then screenshot, then product design system.
-- Check layout, hierarchy, color, typography, spacing, radius, shadow, component presence, asset presence, and density.
-- Use scores internally when useful; show scores to users only when they ask or when it clarifies a quality gate.
+- 使用最具体的视觉基准：Figma frame 优先，其次截图，再其次产品设计规范。
+- 检查布局、层级、颜色、字体、间距、圆角、阴影、组件缺失、资产缺失和密度。
+- 分数可作为内部判断；只有用户要求或评分能解释质量门槛时，才展示给用户。

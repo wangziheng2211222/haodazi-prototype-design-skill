@@ -1,156 +1,156 @@
-# 蝉圈圈 Design System
+# 蝉圈圈设计规范
 
-Use this reference when the target product is 蝉圈圈. Use it as a temporary fallback for 蝉妈妈 only when no 蝉妈妈-specific design system is available, and label the fallback.
+目标产品是蝉圈圈时读取本文件。蝉妈妈暂无专属设计规范时，也可以临时把本文件作为 fallback，但必须在输出中标注 fallback。
 
-## Visual Theme
+## 视觉气质
 
-蝉圈圈 Web is a lightweight business-system and growth-analysis interface. Prefer a clean operational workbench: pale gray page frame, white content surfaces, low-contrast borders, clear text hierarchy, compact tables/forms, and coral-orange brand actions.
+蝉圈圈 Web 是轻量业务系统和增长分析产品的视觉语言。优先做成清晰的运营工作台：浅灰页面框架、白色内容面、低对比边框、清楚的文字层级、紧凑表格/表单，以及珊瑚橙品牌主操作。
 
-Avoid heavy marketing decoration, generic blue-white admin defaults, thick shadows, and arbitrary new colors.
+避免厚重营销装饰、通用蓝白后台默认风格、重投影和随意新增颜色。
 
-## Core Tokens
+## 核心 Token
 
-| Role | Value | Use |
+| 角色 | 色值 | 用法 |
 | --- | --- | --- |
-| Primary | `#FF7752` | Main buttons, selected states, action focus, brand tags |
-| Primary hover | `#FF9275` | Hover on primary actions |
-| Primary pressed | `#E56B4A` | Active/click state |
-| Primary disabled | `#FFD6CB` | Disabled primary button background |
-| Primary subtle bg | `#FFF8F6` | Selected menu/card background, weak brand blocks |
-| Primary pale bg | `#FFF1EE` | Pale brand background |
-| Frame bg | `#F7F8FA` | Page frame, table header background |
-| Subtle divider | `#F2F3F5` | Dividers, weak sections, tag background |
-| Default border | `#E5E6EC` | Inputs, cards, table lines |
-| Text primary | `#1D2129` | Titles and primary text |
-| Text strong secondary | `#4E5969` | Body and subtitles |
-| Text secondary | `#86909C` | Table headers, notes, helper text |
-| Text disabled | `#A9AEB8` | Disabled text |
-| White | `#FFFFFF` | Card surfaces and inverse text |
+| 品牌主色 | `#FF7752` | 主按钮、选中态、行动焦点、品牌标签 |
+| 品牌 hover | `#FF9275` | 主操作 hover |
+| 品牌按下 | `#E56B4A` | active/click 状态 |
+| 品牌禁用 | `#FFD6CB` | 主按钮禁用背景 |
+| 品牌浅背景 | `#FFF8F6` | 菜单/卡片选中背景、弱品牌区块 |
+| 品牌淡背景 | `#FFF1EE` | 淡品牌背景 |
+| 页面框架背景 | `#F7F8FA` | 页面背景、表头背景 |
+| 弱分割线 | `#F2F3F5` | 分割线、弱分区、标签底色 |
+| 默认边框 | `#E5E6EC` | 输入框、卡片、表格线 |
+| 一级文字 | `#1D2129` | 标题和主要正文 |
+| 二级强正文 | `#4E5969` | 正文和副标题 |
+| 次要文字 | `#86909C` | 表头、备注、辅助说明 |
+| 禁用文字 | `#A9AEB8` | 禁用态文字 |
+| 白色 | `#FFFFFF` | 卡片面、反色文字 |
 
-Functional colors:
+功能色：
 
-| Role | Main | Light bg | Text |
+| 角色 | 主色 | 浅背景 | 文字 |
 | --- | --- | --- | --- |
-| Info blue | `#5771FF` | `#F2F4FF` | `#344499` |
-| Success green | `#00B489` | `#EBF9F6` | `#006C52` |
-| Warning orange | `#FF9A1D` | `#FFF8E8` | `#A65508` |
-| Danger red | `#F54B45` | `#FFEDE8` | `#A1171B` |
-| Purple | `#722ED1` | `#F5E8FF` | `#3C108F` |
-| Sky blue | `#027FFF` | `#EBF5FF` | `#014C99` |
+| 信息蓝 | `#5771FF` | `#F2F4FF` | `#344499` |
+| 成功绿 | `#00B489` | `#EBF9F6` | `#006C52` |
+| 警示橙 | `#FF9A1D` | `#FFF8E8` | `#A65508` |
+| 危险红 | `#F54B45` | `#FFEDE8` | `#A1171B` |
+| 紫色 | `#722ED1` | `#F5E8FF` | `#3C108F` |
+| 蔚蓝 | `#027FFF` | `#EBF5FF` | `#014C99` |
 
-Use fixed gradients only for metric-card highlight states. Use brand gradients only for brand-related menu icons, pale brand cards, or brand emphasis.
+固定功能渐变只用于指标卡高亮态。品牌渐变只用于品牌相关菜单 icon、淡品牌卡片或品牌强调。
 
-## Typography
+## 字体
 
-- Font family: PingFang SC when available, then system sans-serif.
-- Default body: 14px equivalent, Regular, about 22px line-height.
-- Page title: 24px equivalent, Medium, about 36px line-height.
-- Card title: 18px or 16px equivalent, Medium.
-- Helper text: 12px equivalent, Regular.
-- Very small tags: 10px only when space is constrained.
+- 字体族：优先 PingFang SC，不可用时使用系统 sans-serif。
+- 默认正文：约 14px，Regular，约 22px 行高。
+- 页面标题：约 24px，Medium，约 36px 行高。
+- 卡片标题：约 18px 或 16px，Medium。
+- 辅助文字：约 12px，Regular。
+- 极小标签：仅在空间受限时使用 10px。
 
-Text colors:
+文字颜色：
 
-- Titles: `#1D2129`.
-- Body/subtitle: `#4E5969`.
-- Helper/table header: `#86909C`.
-- Disabled: `#A9AEB8`.
+- 标题：`#1D2129`。
+- 正文/副标题：`#4E5969`。
+- 辅助/表头：`#86909C`。
+- 禁用：`#A9AEB8`。
 
-## Layout
+## 布局
 
-- Page background: `#F7F8FA`.
-- Main content: white cards or white workbench surfaces.
-- Use whitespace, pale borders, and `#F2F3F5` dividers for structure.
-- Keep information density suitable for business operations: compact filters, tables, stats, detail drawers, and forms.
-- Avoid oversized hero sections unless the target is explicitly a marketing page.
-- Use light borders over heavy shadows.
+- 页面背景：`#F7F8FA`。
+- 主内容：白色卡片或白色工作台内容面。
+- 结构层级依赖留白、浅色边框和 `#F2F3F5` 分割线。
+- 信息密度适合业务操作：紧凑筛选、表格、统计、详情抽屉和表单。
+- 除非目标明确是营销页，否则避免超大 hero。
+- 优先使用轻边框，少用重投影。
 
-## Components
+## 组件
 
-### Buttons
+### 按钮
 
-- Primary: `#FF7752` background, white text.
-- Hover: `#FF9275`.
-- Pressed: `#E56B4A`.
-- Disabled: `#FFD6CB`.
-- Secondary: white background, `#E5E6EC` border, gray text.
-- Text button: transparent background, `#FF7752` text.
-- Default button height: 32px; large: 36px; extra large: 40px; small: 28px; mini: 24px.
-- Default rectangular button radius: 6px.
-- Do not make all buttons pill-shaped.
+- 主按钮：`#FF7752` 背景，白色文字。
+- Hover：`#FF9275`。
+- Pressed：`#E56B4A`。
+- Disabled：`#FFD6CB`。
+- 次按钮：白色背景，`#E5E6EC` 边框，灰色文字。
+- 文字按钮：透明背景，`#FF7752` 文字。
+- 默认按钮高度：32px；大号 36px；超大 40px；小号 28px；mini 24px。
+- 默认矩形按钮圆角：6px。
+- 不要把所有按钮都做成胶囊形。
 
-### Cards
+### 卡片
 
-- Default card: white background, `#E5E6EC` or `#F2F3F5` border.
-- Selected brand card: `#FFF8F6` or pale brand gradient, with soft brand border.
-- Metric cards may use functional light backgrounds or fixed functional gradients.
-- Keep shadows subtle.
+- 默认卡片：白色背景，`#E5E6EC` 或 `#F2F3F5` 边框。
+- 品牌选中卡片：`#FFF8F6` 或淡品牌渐变，搭配柔和品牌边框。
+- 指标卡可使用功能色浅背景或固定功能渐变。
+- 阴影保持克制。
 
-### Tables
+### 表格
 
-- Header background: `#F7F8FA`.
-- Header text: `#86909C`.
-- Body text: `#1D2129` or `#4E5969`.
-- Grid/dividers: `#F2F3F5` or `#E5E6EC`.
-- Default tags: `#F2F3F5` bg and gray text.
-- Status tags should use functional light backgrounds and semantic text colors.
+- 表头背景：`#F7F8FA`。
+- 表头文字：`#86909C`。
+- 正文文字：`#1D2129` 或 `#4E5969`。
+- 网格/分割线：`#F2F3F5` 或 `#E5E6EC`。
+- 默认标签：`#F2F3F5` 背景和灰色文字。
+- 状态标签使用功能色浅背景和语义文字色。
 
-### Forms
+### 表单
 
-- Input border: `#E5E6EC`.
-- Input text: `#1D2129`.
-- Placeholder/helper: `#86909C` or `#A9AEB8`.
-- Focus: primary border or subtle primary focus feedback.
-- Error: `#F54B45` with `#FFEDE8` where background is needed.
+- 输入框边框：`#E5E6EC`。
+- 输入文字：`#1D2129`。
+- Placeholder/辅助说明：`#86909C` 或 `#A9AEB8`。
+- Focus：品牌主色边框或浅品牌反馈。
+- Error：`#F54B45`；需要背景时使用 `#FFEDE8`。
 
-### Tags And Status
+### 标签和状态
 
-| State | Background | Text |
+| 状态 | 背景 | 文字 |
 | --- | --- | --- |
-| Success | `#EBF9F6` | `#006C52` |
-| Danger/error | `#FFEDE8` | `#A1171B` |
-| Warning | `#FFF8E8` | `#A65508` |
-| Info | `#F2F4FF` or `#EBF5FF` | `#344499` or `#014C99` |
-| Brand | `#FFF8F6` | `#FF7752` |
-| Neutral | `#F2F3F5` | `#4E5969` |
+| 成功 | `#EBF9F6` | `#006C52` |
+| 危险/错误 | `#FFEDE8` | `#A1171B` |
+| 警示 | `#FFF8E8` | `#A65508` |
+| 信息 | `#F2F4FF` 或 `#EBF5FF` | `#344499` 或 `#014C99` |
+| 品牌 | `#FFF8F6` | `#FF7752` |
+| 中性 | `#F2F3F5` | `#4E5969` |
 
-### Navigation
+### 导航
 
-- Background: white or `#F7F8FA`.
-- Default text: `#4E5969` or `#6B7785`.
-- Selected item: `#FFF8F6` background and `#FF7752` text/icon, or strong text `#1D2129`.
-- Dividers: `#E5E6EC` or `#F2F3F5`.
+- 背景：白色或 `#F7F8FA`。
+- 默认文字：`#4E5969` 或 `#6B7785`。
+- 选中项：`#FFF8F6` 背景 + `#FF7752` 文字/icon，或强文字 `#1D2129`。
+- 分割线：`#E5E6EC` 或 `#F2F3F5`。
 
-### Title Bars
+### 标题栏
 
-- Common title-bar height: 76px; tabs title bar: 64px.
-- Horizontal padding: 24px.
-- Vertical padding: 16px.
-- Bottom divider: `#F2F3F5`.
-- Title: 17px equivalent, semibold, `#1D2129`.
-- Subtitle/update text: 12px, `#86909C`.
-- Right action gap: 12px.
+- 常规标题栏高度：76px；Tabs 标题栏：64px。
+- 水平内边距：24px。
+- 垂直内边距：16px。
+- 底部分割线：`#F2F3F5`。
+- 标题：约 17px，semibold，`#1D2129`。
+- 副标题/更新时间：12px，`#86909C`。
+- 右侧操作间距：12px。
 
-### Dividers
+### 分割线
 
-- Default: 1px `#F2F3F5`.
-- Use `#E5E6EC` only for stronger boundaries.
-- Vertical text dividers commonly use 14px height with 12px horizontal text spacing.
+- 默认：1px `#F2F3F5`。
+- 只有需要更强边界时使用 `#E5E6EC`。
+- 文本之间的垂直分割线通常高 14px，两侧文字间距 12px。
 
-## Matching Rules
+## 匹配规则
 
-- Match coral orange near `#FF7752` to the primary brand token.
-- Match pale orange/red backgrounds to `#FFF8F6`, `#FFF1EE`, or `#FFE4DC`.
-- Match pale page background to `#F7F8FA`.
-- Match borders/table lines to `#E5E6EC` or `#F2F3F5`.
-- Match text hierarchy to `#1D2129`, `#4E5969`, `#86909C`, and `#A9AEB8`.
-- Use semantic functional colors for state, not color similarity alone.
+- 接近 `#FF7752` 的珊瑚橙匹配品牌主色。
+- 浅橙/浅红背景匹配 `#FFF8F6`、`#FFF1EE` 或 `#FFE4DC`。
+- 浅页面背景匹配 `#F7F8FA`。
+- 边框/表格线匹配 `#E5E6EC` 或 `#F2F3F5`。
+- 文字层级匹配 `#1D2129`、`#4E5969`、`#86909C`、`#A9AEB8`。
+- 状态色按语义使用，不只按色相相似。
 
-## Token Priority
+## Token 优先级
 
-1. Exact Figma component/frame tokens if available.
-2. This design-system reference.
-3. Component semantic rules in this reference.
-4. Nearby token inference, explicitly marked as inferred.
+1. 可用时优先使用精确 Figma 组件/画框 token。
+2. 使用本设计规范。
+3. 使用本规范中的组件语义规则。
+4. 使用相邻 token 推导，并明确标注为推导值。
 
-Do not invent new colors unless necessary.
+除非必要，不要发明新颜色。

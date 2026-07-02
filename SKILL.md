@@ -1,161 +1,161 @@
 ---
 name: haodazi-prototype-design
-description: Use when Codex needs to follow the Haodazi prototype-design workflow to turn PRDs, requirement notes, screenshots, Figma context, or product ideas into a multi-page high-fidelity review prototype with page navigation, requirement cards that click into source-linked requirement details, product-specific design systems such as 蝉圈圈/蝉妈妈/蝉镜, Vue 3 + Element Plus generated pages, review issues, and delivery notes. Trigger for requests such as 原型设计模式, 好搭子原型, 需求生成原型, 高保真评审稿, 需求卡拆解, 需求详情一一对应, screenshot style replication, Figma-to-review-prototype, pageId decomposition, or left-preview/right-navigation prototype output.
+description: 当 Codex 需要按好搭子原型设计模式，把 PRD、需求说明、截图、Figma 上下文或产品想法转成多页面高保真评审原型时使用。本技能会生成页面导航、可点击并回溯原文的需求卡、按需加载蝉圈圈/蝉妈妈/蝉镜等产品设计规范、Vue 3 + Element Plus 生成稿、评审问题和交付说明。适用于：原型设计模式、好搭子原型、需求生成原型、高保真评审稿、需求卡拆解、需求详情一一对应、截图风格复刻、Figma 还原到评审原型、pageId 拆解、左侧预览/右侧导航式原型输出。
 ---
 
-# Haodazi Prototype Design
+# 好搭子原型设计
 
-## Purpose
+## 目标
 
-Execute the Haodazi prototype-design workflow: turn product requirements and optional visual references into a complete, reviewable, multi-page high-fidelity prototype. Compete on workflow quality, not generic page generation.
+执行好搭子原型设计工作流：把产品需求和可选视觉参考，转成一个完整、可评审、可点击的多页面高保真原型。核心竞争点是工作流质量，不是泛泛地生成几个页面。
 
-Use this skill to produce a shared review object for product, design, and engineering: page map, clickable page navigation, high-fidelity pages, states, review issues, and delivery notes.
+使用本技能时，目标产物应成为产品、设计、研发共同评审的对象：页面地图、可点击页面导航、高保真页面、状态覆盖、评审问题和交付说明。
 
-## Operating Principles
+## 执行原则
 
-- Treat requirements as the source of business truth.
-- Treat screenshots as visual language and component-pattern evidence.
-- Treat Figma as an optional restoration or design-system evidence lane, not the default input.
-- Generate a complete result first; do not stop at abstract module selection unless the user explicitly asks.
-- Keep internal decomposition hidden by default, but preserve it in structured outputs.
-- Build one coherent product, not isolated screens.
-- Preserve requirement traceability: every requirement card must link back to source text and affected pages.
-- Load product-specific design systems on demand instead of using a generic admin template.
-- Keep screenshot style replication, Figma restoration, review repair, and delivery assets as distinct capability lanes.
-- Prefer precise reviewability over decorative UI.
-- Ask at most one clarification question only when missing information would make the product category, platform, or core flow impossible to infer.
+- 把需求文档作为业务逻辑最高优先级来源。
+- 把截图作为视觉语言和组件模式证据。
+- 把 Figma 作为可选的还原/设计系统证据通道，不把它当作默认主输入。
+- 先生成完整结果；除非用户明确要求，否则不要停在抽象模块选择阶段。
+- 内部拆解默认不打断用户，但要保留为结构化产物。
+- 生成一个连贯产品，而不是几个孤立页面。
+- 保留需求追踪：每张需求卡都要能回溯原始需求文本和受影响页面。
+- 按需加载产品级设计规范，不要回退到通用后台模板。
+- 保持“截图风格复刻、Figma 还原、评审修复、交付资产”是不同业务能力，不要混成一个模糊步骤。
+- 优先保证可评审性，少做无依据装饰。
+- 只有当缺失信息会导致无法判断产品类型、平台或核心流程时，才最多问一个澄清问题。
 
-## Runtime Boundary
+## 运行时边界
 
-When generating runnable prototype code, use Vue 3 + Element Plus + Tailwind CDN. Do not use React, JSX, shadcn, `className`, or `useState` inside generated prototype pages.
+需要生成可运行原型代码时，使用 Vue 3 + Element Plus + Tailwind CDN。生成稿里不要使用 React、JSX、shadcn、`className` 或 `useState`。
 
-For generated Vue pages:
+生成 Vue 页面时：
 
-- Separate code with `// ---TEMPLATE---` and `// ---SCRIPT---`.
-- Access Vue through the global `Vue` object, such as `Vue.ref()` and `Vue.computed()`.
-- Use Element Plus components such as `el-button`, `el-table`, `el-dialog`, `el-drawer`, `el-form`, `el-tabs`, and `el-empty`.
-- Use `ElMessage` and `ElMessageBox.confirm` for feedback.
-- Include realistic Chinese or domain-appropriate mock data. Avoid `Lorem ipsum`, `test`, `abc`, and emoji.
+- 用 `// ---TEMPLATE---` 和 `// ---SCRIPT---` 分隔代码。
+- 通过全局 `Vue` 对象访问 Vue API，例如 `Vue.ref()`、`Vue.computed()`。
+- 使用 Element Plus 组件，例如 `el-button`、`el-table`、`el-dialog`、`el-drawer`、`el-form`、`el-tabs`、`el-empty`。
+- 提示反馈用 `ElMessage`，确认弹窗用 `ElMessageBox.confirm`。
+- 使用真实感中文或领域相关 mock 数据。避免 `Lorem ipsum`、`test`、`abc` 和 emoji。
 
-## Workflow
+## 工作流
 
-### 1. Intake
+### 1. 输入整理
 
-Collect and normalize available inputs:
+收集并归一化可用输入：
 
-- PRD, feature brief, meeting notes, pasted requirements, or product idea.
-- Screenshots, existing pages, brand/style references, or product screenshots.
-- Figma links, selected frames, node IDs, or exported design context.
-- User constraints: target user, platform, must-have pages, output location, fidelity level, and review focus.
-- Product family hints such as 蝉圈圈, 蝉妈妈, 蝉镜, or other known internal products.
+- PRD、功能说明、会议纪要、粘贴需求或产品想法。
+- 截图、已有页面、品牌/风格参考或产品截图。
+- Figma 链接、指定画框、node ID 或导出的设计上下文。
+- 用户约束：目标用户、平台、必做页面、输出位置、保真度和评审重点。
+- 产品线线索，例如蝉圈圈、蝉妈妈、蝉镜或其他内部产品。
 
-If the user provides only a vague idea, infer a compact but complete product scope and state assumptions before outputting artifacts.
+如果用户只有模糊想法，先推断一个紧凑但完整的产品范围，并在输出产物前说明假设。
 
-Read `references/product-design-systems.md` when the task names a known product family, asks to follow a design规范/design system, or lacks screenshots/Figma but expects a product-native visual style.
-Read `references/capability-lanes.md` when the task includes screenshots, Figma, review repair, visual QA, delivery assets, or any ambiguity about which Haodazi business capability should drive the workflow.
+当任务提到已知产品线、要求遵循设计规范，或没有截图/Figma 但需要产品原生视觉风格时，读取 `references/product-design-systems.md`。
+当任务包含截图、Figma、评审修复、视觉 QA、交付资产，或不确定应该走哪条好搭子业务能力时，读取 `references/capability-lanes.md`。
 
-Do not stop for abstract module selection by default. Stop for clarification only when input conflicts make the business goal unclear, a large Figma file has no target frame, or the user explicitly asks to inspect decomposition before generation.
+默认不要因为“模块选择”而停下来。只有输入冲突导致业务目标不清、Figma 文件很大但没有目标画框，或用户明确要求先看拆解时，才停下澄清。
 
-### 2. Requirement Understanding
+### 2. 需求理解
 
-Extract:
+提取：
 
-- Product type and main users.
-- Roles, permissions, business objects, fields, states, and rules.
-- Core user flows and edge flows.
-- Pages, dialogs, drawers, tables, forms, details, settings, and empty/error/loading states.
-- Ambiguities, risks, and missing requirements.
+- 产品类型和主要用户。
+- 角色、权限、业务对象、字段、状态和规则。
+- 核心用户流程和分支流程。
+- 页面、弹窗、抽屉、表格、表单、详情、设置、空/错/加载态。
+- 歧义、风险和缺失需求。
 
-Keep this step as internal reasoning unless the user asks to inspect it.
+除非用户要求查看，否则这一步作为内部推理，不要打断输出。
 
-Create requirement cards for review:
+为评审创建需求卡：
 
-- Give every card a stable `requirementId`.
-- Keep a short original-source excerpt or pointer for each card.
-- Record parsed intent, acceptance criteria, impacted `pageId`s, related states, and unresolved questions.
-- In a review prototype, clicking a requirement card must open a requirement-detail panel/page that shows the source-linked detail and the generated pages/states that satisfy it.
-- If the source is a long document, use section heading, paragraph index, page number, or nearby quote as the source pointer.
+- 每张卡有稳定的 `requirementId`。
+- 每张卡保留原始需求摘录或原文位置。
+- 记录解析后的意图、验收标准、影响的 `pageId`、相关状态和未决问题。
+- 在评审原型中，点击需求卡必须打开需求详情面板/页面，展示原文定位、生成页面/状态覆盖情况。
+- 如果来源是长文档，用章节标题、段落序号、页码或附近短摘录作为原文定位。
 
-### 3. Page Map And `pageId` Decomposition
+### 3. 页面地图和 `pageId` 拆解
 
-Create stable `pageId`s before writing pages. Bind a page's list, details, create/edit dialogs, drawers, filters, and local states to the same `pageId` when they are part of one review surface.
+写页面前先创建稳定 `pageId`。同一评审面内的列表、详情、新增/编辑弹窗、抽屉、筛选和局部状态，应绑定到同一个 `pageId`。
 
-Default structure:
+默认页面结构：
 
-- Dashboard or overview when the product needs an entry point.
-- Primary list/workbench page for the main business object.
-- Detail page or detail drawer.
-- Create/edit flow.
-- Review/approval/status flow when relevant.
-- Settings or rule-management page only when requirements imply it.
+- 产品需要入口时，生成总览或仪表盘。
+- 为核心业务对象生成主列表/工作台页面。
+- 生成详情页或详情抽屉。
+- 生成新增/编辑流程。
+- 如果需求涉及评审、审批、状态流转，则生成对应流程。
+- 只有需求明确时，才生成设置或规则管理页。
 
-Do not create redundant pages just to inflate scope.
+不要为了显得丰富而制造冗余页面。
 
-### 4. Visual Direction
+### 4. 视觉方向
 
-If screenshots are provided, extract a visual DNA:
+如果提供截图，提取视觉 DNA：
 
-- Layout density, navigation structure, information hierarchy, and component families.
-- Color palette, typography, radius, shadow, border, spacing, and data density.
-- Primary interaction patterns and visible states.
-- Style avoidances.
-- Primary screenshot, auxiliary screenshot, and conflict notes when multiple screenshots are provided.
+- 布局密度、导航结构、信息层级和组件家族。
+- 色彩、字体、圆角、阴影、描边、间距和数据密度。
+- 主要交互模式和可见状态。
+- 应避免的风格。
+- 多截图时，明确主参考图、辅助参考图和冲突点。
 
-If Figma context is provided, prefer Figma node/layout/token evidence over screenshot guesses. If both exist and conflict, keep requirement logic from the PRD, detailed visual constraints from Figma, and broader style atmosphere from screenshots.
+如果提供 Figma 上下文，优先使用 Figma 节点、布局和 token 证据，不用截图猜测替代。若 Figma、截图、需求之间冲突，业务逻辑服从 PRD，精确视觉约束服从 Figma，整体氛围可参考截图。
 
-Read `references/output-contract.md` when you need exact artifact schemas. Read `references/review-checklist.md` before final QA or when the user asks for review issues.
+需要精确产物结构时，读取 `references/output-contract.md`。最终 QA 或用户要求看评审问题时，读取 `references/review-checklist.md`。
 
-If a product design system is loaded, record it in the design tokens and explain any fallback. For example, 蝉妈妈 may temporarily use 蝉圈圈 design rules when no 蝉妈妈-specific design system is available.
+如果加载了产品设计规范，要在 design tokens 中记录所用规范并说明 fallback。例如蝉妈妈暂无专属规范时，可以临时使用蝉圈圈规范，但必须说明这是 fallback。
 
-### 5. High-Fidelity Generation
+### 5. 高保真生成
 
-Generate all agreed or inferred `pageId`s in one coherent pass:
+一次性生成所有已确定或推断的 `pageId`：
 
-- Maintain shared navigation, naming, data fields, status labels, and primary actions.
-- Include realistic mock data and visible state examples.
-- Cover empty, loading, error, disabled, permission, validation, and destructive-action confirmation states where they matter.
-- Make the left side a live/page preview target and the right side a page-navigation, requirement-card, or scheme-navigation surface when creating an HTML review shell.
-- Keep side navigation concise: pages, requirement cards, key states, issues, and delivery notes.
-- Support requirement-card clicks that switch the right panel into source-linked requirement detail, while keeping the current page preview visible.
+- 保持导航、命名、数据字段、状态标签和主操作一致。
+- 包含真实感 mock 数据和可见状态样例。
+- 在有评审价值的地方覆盖空态、加载态、错误态、禁用态、权限态、校验态和危险操作确认。
+- 如果创建 HTML 评审壳，左侧作为实时/页面预览区域，右侧作为页面导航、需求卡或方案导航区域。
+- 右侧导航保持简洁：页面、需求卡、关键状态、问题和交付说明。
+- 支持点击需求卡后，右侧切换到带原文回溯的需求详情，同时保持当前页面预览可见。
 
-For repository work, follow the existing project stack and scripts. For standalone artifact work, prefer a self-contained HTML file that can open locally unless the user asks for a framework app.
+如果是在已有仓库里工作，遵循该仓库技术栈和脚本。如果是独立产物，除非用户要求框架应用，否则优先生成可本地打开的单文件 HTML。
 
-### 6. Review And Repair
+### 6. 评审和修复
 
-Before final delivery, check:
+交付前检查：
 
-- Each requirement maps to at least one page, state, or review note.
-- Each requirement card can open a detail view that points back to source text and generated coverage.
-- Main flows can be followed across pages.
-- Status names, fields, and actions stay consistent.
-- Dialogs, drawers, forms, tables, and details belong to the right `pageId`.
-- Visual language is coherent across pages.
-- Generated Vue code respects the runtime boundary.
+- 每条需求至少映射到一个页面、状态或评审说明。
+- 每张需求卡都能打开详情，并回溯原始需求和生成覆盖。
+- 主流程能跨页面走通。
+- 状态名、字段和操作保持一致。
+- 弹窗、抽屉、表单、表格、详情属于正确的 `pageId`。
+- 多页面视觉语言一致。
+- 生成的 Vue 代码符合运行时边界。
 
-If flaws are found, repair affected pages or record explicit review issues. Do not hide gaps by claiming they are complete.
+发现问题时，修复受影响页面，或明确记录评审问题。不要用“已完成”掩盖缺口。
 
-When repairing after user feedback, classify the feedback first: requirement gap, visual deviation, interaction issue, field/state issue, missing page, or delivery-asset request. Repair only the affected page, region, interaction, or style token unless the issue truly changes shared product structure.
+处理用户反馈时，先分类：需求缺口、视觉偏差、交互问题、字段/状态问题、缺失页面、交付资产需求。除非问题真的改变共享产品结构，否则只修复受影响页面、区域、交互或样式 token。
 
-### 7. Delivery
+### 7. 交付
 
-Return the prototype with:
+返回原型时说明：
 
-- Where the user can open it.
-- What pages were generated.
-- What design references were used: screenshots, Figma frames, product design system, or fallback.
-- What delivery assets were produced or intentionally skipped.
-- What review issues or assumptions remain.
-- What validation was run.
+- 用户在哪里打开。
+- 生成了哪些页面。
+- 使用了哪些设计参考：截图、Figma 画框、产品设计规范或 fallback。
+- 产出了哪些交付资产，哪些有意跳过。
+- 还剩哪些评审问题或假设。
+- 做过哪些验证。
 
-If the user asks for an artifact, create files instead of only describing the plan.
+如果用户要的是产物，直接创建文件，不要只描述计划。
 
-## Output Modes
+## 输出模式
 
-Choose the smallest useful output:
+选择最小但有用的输出形式：
 
-- **Chat blueprint**: use for early brainstorming or product alignment.
-- **Standalone review prototype**: use for quick artifact delivery outside a repo.
-- **Repo-integrated prototype**: use when the user asks to modify an existing project.
-- **Skill/plugin evolution notes**: use when improving this workflow itself.
+- **聊天蓝图**：用于早期头脑风暴或产品方向对齐。
+- **独立评审原型**：用于快速交付仓库外的可打开产物。
+- **仓库集成原型**：用于用户要求修改现有项目。
+- **技能/插件演进说明**：用于继续改进这套工作流本身。
 
-Do not write product docs unless the user asks. In brainstorming, keep the answer in chat.
+除非用户明确要求，不要写产品文档。头脑风暴阶段只在聊天里输出。

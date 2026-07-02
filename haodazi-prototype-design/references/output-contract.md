@@ -1,30 +1,30 @@
-# Output Contract
+# 输出协议
 
-Use these structures when a task needs explicit artifacts, traceability, or repeatable review output.
+当任务需要明确产物、需求追踪或可复用评审输出时，使用这些结构。
 
-## Artifact Set
+## 产物集合
 
-For a complete prototype-design task, produce as many of these as the user needs:
+完整原型设计任务可按需要产出以下文件：
 
-- `prototype.html` or repo-native page files: runnable high-fidelity review prototype.
-- `page-map.json`: page IDs, page names, route labels, ownership, and review purpose.
-- `requirements-map.json`: requirement cards, source pointers, parsed intent, and generated coverage.
-- `interaction-blueprint.json`: cross-page flows, state transitions, dialogs, drawers, and important interactions.
-- `visual-dna.json`: screenshot/style analysis with primary reference, auxiliary references, conflicts, and avoidances.
-- `figma-restoration-context.json`: Figma frame, node, token, asset, and screenshot context when Figma is used.
-- `review-notes.md`: assumptions, uncovered questions, coverage warnings, and suggested review agenda.
-- `quality-report.json`: coverage, runtime, visual QA, and repair status.
-- `repair-history.json`: repair plans, patched pages, and reasons.
-- `design-tokens.json`: colors, typography, radius, shadow, density, spacing, and component patterns inferred from screenshots or Figma.
-- `component-inventory.json`: generated component catalog and reusable patterns.
-- `design-system-used.md`: product design system, fallback status, and deviations.
-- `delivery-notes.md`: implementation remarks for design and engineering follow-up.
-- `implementation-notes.md`: development estimation, data objects, API assumptions, state enums, permissions, and risks.
-- `figma-redraw-brief.md`: structured design description for later Figma redraw or plugin import.
+- `prototype.html` 或仓库原生页面文件：可运行的高保真评审原型。
+- `page-map.json`：页面 ID、页面名、路由标签、页面职责和评审目的。
+- `requirements-map.json`：需求卡、原文位置、解析意图和生成覆盖。
+- `interaction-blueprint.json`：跨页面流程、状态流转、弹窗、抽屉和关键交互。
+- `visual-dna.json`：截图/风格分析，包括主参考、辅助参考、冲突点和 avoidances。
+- `figma-restoration-context.json`：使用 Figma 时记录画框、节点、token、资产和截图上下文。
+- `review-notes.md`：假设、未覆盖问题、覆盖警告和建议评审议程。
+- `quality-report.json`：需求覆盖、运行时、视觉 QA 和修复状态。
+- `repair-history.json`：修复计划、修复页面和修复原因。
+- `design-tokens.json`：从截图或 Figma 推导出的颜色、字体、圆角、阴影、密度、间距和组件模式。
+- `component-inventory.json`：生成组件清单和可复用模式。
+- `design-system-used.md`：使用的产品设计规范、fallback 状态和偏离点。
+- `delivery-notes.md`：设计和研发后续使用的实现备注。
+- `implementation-notes.md`：开发估算、数据对象、API 假设、状态枚举、权限和风险。
+- `figma-redraw-brief.md`：后续 Figma 重绘或插件导入使用的结构化设计说明。
 
-For lightweight chat-only tasks, summarize these sections directly instead of writing files.
+轻量聊天任务可直接在回复中概括这些部分，不一定写文件。
 
-## Page Map Schema
+## 页面地图 Schema
 
 ```json
 {
@@ -34,7 +34,7 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
     {
       "pageId": "overview",
       "name": "总览",
-      "purpose": "Explain what the reviewer can validate here.",
+      "purpose": "说明评审者可在此页验证什么。",
       "routeLabel": "总览",
       "primaryObjects": ["object"],
       "states": ["default", "empty", "loading", "error"],
@@ -53,7 +53,7 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
 }
 ```
 
-## Requirements Map Schema
+## 需求地图 Schema
 
 ```json
 {
@@ -62,29 +62,29 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
       "sourceId": "prd-main",
       "title": "需求文档",
       "type": "prd|notes|figma|screenshot|user-message",
-      "sourcePointer": "file, URL, section, page, or message reference"
+      "sourcePointer": "文件、URL、章节、页码或消息引用"
     }
   ],
   "requirementCards": [
     {
       "requirementId": "REQ-001",
       "title": "需求卡标题",
-      "summary": "One-sentence parsed requirement.",
+      "summary": "一句话概括解析后的需求。",
       "sourceId": "prd-main",
-      "sourcePointer": "Section 2.1 / page 3 / paragraph 4",
-      "sourceExcerpt": "Short excerpt or source cue.",
-      "parsedIntent": "What the product must support.",
-      "acceptanceCriteria": ["Reviewer can verify this condition."],
+      "sourcePointer": "第 2.1 节 / 第 3 页 / 第 4 段",
+      "sourceExcerpt": "短原文摘录或来源线索。",
+      "parsedIntent": "产品必须支持什么。",
+      "acceptanceCriteria": ["评审者可以验证的条件。"],
       "impactedPageIds": ["lead-workbench"],
       "impactedStates": ["empty", "error", "permission-denied"],
-      "openQuestions": ["Question if any."],
+      "openQuestions": ["如有未决问题，写在这里。"],
       "coverageStatus": "covered|partial|open"
     }
   ]
 }
 ```
 
-## Design Tokens Schema
+## 设计 Token Schema
 
 ```json
 {
@@ -133,17 +133,17 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
 }
 ```
 
-## Visual DNA Schema
+## 视觉 DNA Schema
 
 ```json
 {
-  "primaryReference": "screenshot-1 or product design system",
+    "primaryReference": "截图 1 或产品设计规范",
   "auxiliaryReferences": ["screenshot-2"],
   "conflicts": [
     {
       "sourceA": "screenshot",
       "sourceB": "requirements",
-      "resolution": "Business logic follows requirements; visual language follows screenshot."
+      "resolution": "业务逻辑服从需求；视觉语言参考截图。"
     }
   ],
   "styleSummary": "string",
@@ -156,7 +156,7 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
 }
 ```
 
-## Figma Restoration Context Schema
+## Figma 还原上下文 Schema
 
 ```json
 {
@@ -166,7 +166,7 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
       "frameName": "string",
       "fileKey": "string",
       "nodeId": "string",
-      "frameScreenshot": "path or URL if available"
+      "frameScreenshot": "可用时填写路径或 URL"
     }
   ],
   "nodeTreeSummary": "string",
@@ -178,14 +178,14 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
       "assetId": "string",
       "type": "image|svg|icon",
       "usage": "string",
-      "source": "path or URL if available"
+      "source": "可用时填写路径或 URL"
     }
   ],
   "restorationNotes": ["string"]
 }
 ```
 
-## Quality And Repair Schemas
+## 质量与修复 Schema
 
 ```json
 {
@@ -218,7 +218,7 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
 }
 ```
 
-## Component Inventory Schema
+## 组件清单 Schema
 
 ```json
 {
@@ -243,48 +243,48 @@ For lightweight chat-only tasks, summarize these sections directly instead of wr
 }
 ```
 
-## Review Notes Structure
+## 评审说明结构
 
 ```markdown
-# Review Notes
+# 评审说明
 
-## Assumptions
+## 假设
 
 - ...
 
-## Requirement Coverage
+## 需求覆盖
 
-| Requirement | Covered By | Notes |
+| 需求 | 覆盖位置 | 说明 |
 | --- | --- | --- |
 | ... | ... | ... |
 
-## Issues For Review
+## 待评审问题
 
-| Priority | Page | Area | Issue | Suggested Fix |
+| 优先级 | 页面 | 区域 | 问题 | 建议修复 |
 | --- | --- | --- | --- | --- |
 | P1 | ... | ... | ... | ... |
 
-## Delivery Notes
+## 交付说明
 
 - ...
 
-## Visual QA
+## 视觉 QA
 
-- Baseline used: Figma frame, screenshot, product design system, or none.
-- Visual issues fixed:
-- Visual issues remaining:
-- Similarity score: only include when requested or useful for a visible quality gate.
+- 使用的基准：Figma 画框、截图、产品设计规范或无。
+- 已修复视觉问题：
+- 剩余视觉问题：
+- 相似度评分：仅在用户要求或评分能解释质量门槛时填写。
 ```
 
-## Standalone HTML Shell
+## 独立 HTML 评审壳
 
-When creating a standalone review prototype, use:
+创建独立评审原型时：
 
-- A fixed or sticky left preview/content region.
-- A right page-navigation panel with page list, requirement cards, states, assumptions, and review issues.
-- A requirement-card detail view: clicking a requirement card shows source pointer, source excerpt, parsed intent, acceptance criteria, impacted pages/states, and coverage status.
-- Stable buttons/tabs for switching pages.
-- No marketing landing page before the actual prototype.
-- Responsive behavior that keeps navigation usable on narrow screens.
+- 左侧使用固定或 sticky 的预览/内容区域。
+- 右侧使用页面导航面板，包含页面列表、需求卡、状态、假设和评审问题。
+- 提供需求卡详情视图：点击需求卡后展示原文位置、原文摘录、解析意图、验收标准、影响页面/状态和覆盖状态。
+- 使用稳定的按钮或 tabs 切换页面。
+- 不要在实际原型前面放营销落地页。
+- 窄屏下导航仍应可用。
 
-If the prototype includes generated Vue pages, embed them as distinct page modules or clearly separated code blocks. Keep the runtime boundary in `SKILL.md`.
+如果原型包含生成的 Vue 页面，把它们作为独立页面模块或清晰分隔的代码块嵌入。运行时边界以 `SKILL.md` 为准。

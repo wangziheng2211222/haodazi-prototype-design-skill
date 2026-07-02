@@ -1,56 +1,56 @@
-# Review Checklist
+# 评审检查清单
 
-Use this before final delivery or when asked to review a generated prototype.
+最终交付前，或用户要求评审生成原型时，使用本清单。
 
-## Requirement Coverage
+## 需求覆盖
 
-- Every explicit requirement is mapped to a page, flow, state, or open issue.
-- Every requirement card has a stable `requirementId`.
-- Clicking or selecting a requirement card reveals a detail view tied back to original source text or a precise source pointer.
-- Requirement details show parsed intent, acceptance criteria, impacted `pageId`s, impacted states, and coverage status.
-- Business objects use consistent names across list, details, forms, and dialogs.
-- Roles and permissions appear in UI states when the requirement mentions them.
-- Required fields, optional fields, validation, and destructive actions are visible.
-- Empty, loading, error, disabled, and permission-denied states are included where review value is high.
+- 每条明确需求都映射到页面、流程、状态或开放问题。
+- 每张需求卡都有稳定的 `requirementId`。
+- 点击或选择需求卡后，可以看到回溯原始文本或精确来源位置的详情视图。
+- 需求详情展示解析意图、验收标准、影响的 `pageId`、影响状态和覆盖状态。
+- 业务对象在列表、详情、表单、弹窗中命名一致。
+- 需求提到角色和权限时，界面状态中有对应体现。
+- 必填字段、选填字段、校验和危险操作可见。
+- 有评审价值的空态、加载态、错误态、禁用态、无权限态都被覆盖。
 
-## Multi-Page Product Coherence
+## 多页面产品一致性
 
-- Navigation reflects the product structure, not arbitrary page order.
-- Primary actions appear in predictable locations.
-- Detail views match list fields and status labels.
-- Create/edit flows return to a clear destination.
-- Approval, publishing, payment, or other state machines show next actions.
-- Mock data stays realistic and internally consistent.
-- The interaction blueprint covers primary flows, key branches, dialogs, drawers, confirmations, and return destinations.
-- A generated change or repair does not mutate unrelated pages unless shared navigation, shared fields, or shared states require it.
+- 导航反映产品结构，而不是随意排序。
+- 主操作出现在可预测的位置。
+- 详情视图与列表字段、状态标签一致。
+- 新增/编辑流程有明确返回目的地。
+- 审批、发布、支付等状态机展示下一步操作。
+- mock 数据真实且前后一致。
+- 交互蓝图覆盖主流程、关键分支、弹窗、抽屉、确认和返回目的地。
+- 生成后的修改不会影响无关页面，除非共享导航、共享字段或共享状态确实需要同步。
 
-## Visual Coherence
+## 视觉一致性
 
-- Screenshots or Figma evidence influence layout density, typography, color, radius, spacing, and component patterns.
-- Product-specific design systems are loaded when product names such as 蝉圈圈, 蝉妈妈, or 蝉镜 are present.
-- 蝉圈圈 output follows coral-orange primary actions, pale gray workbench background, white surfaces, compact tables/forms, PingFang/system typography, and light borders.
-- 蝉妈妈 output may temporarily use 蝉圈圈 design rules only when no 蝉妈妈-specific reference exists, and the fallback is disclosed.
-- The result avoids falling back to a generic blue-white admin template when a stronger visual reference exists.
-- Components share one design language across pages.
-- Page titles, table density, form rhythm, and button hierarchy stay consistent.
-- Text does not overflow buttons, tables, cards, sidebars, or navigation.
-- Multi-screenshot tasks identify the primary reference, auxiliary references, and conflicts.
-- Figma tasks prefer frame/node tokens, Auto Layout, asset manifest, and frame screenshots over screenshot-only inference.
-- If Figma is the baseline, Element Plus components must not override the Figma layout, spacing, color, or component position.
+- 截图或 Figma 证据影响布局密度、字体、颜色、圆角、间距和组件模式。
+- 出现蝉圈圈、蝉妈妈、蝉镜等产品名时，按需加载产品级设计规范。
+- 蝉圈圈输出遵循珊瑚橙主操作、浅灰工作台背景、白色内容面、紧凑表格/表单、PingFang/system 字体和轻边框。
+- 蝉妈妈暂无专属规范时，可临时使用蝉圈圈规范，但必须说明 fallback。
+- 当存在强视觉参考时，不要退回通用蓝白后台模板。
+- 多页面组件保持同一设计语言。
+- 页面标题、表格密度、表单节奏和按钮层级一致。
+- 文本不要溢出按钮、表格、卡片、侧边栏或导航。
+- 多截图任务明确主参考、辅助参考和冲突点。
+- Figma 任务优先使用 frame/node token、Auto Layout、资产清单和画框截图，而不是截图式猜测。
+- 如果 Figma 是基准，Element Plus 组件不能覆盖 Figma 的布局、间距、颜色或组件位置。
 
-## Generated Runtime
+## 生成运行时
 
-- Generated prototype pages use Vue 3 + Element Plus + Tailwind CDN when runnable code is needed.
-- Code uses `// ---TEMPLATE---` and `// ---SCRIPT---` separators.
-- Vue APIs use the global `Vue` object.
-- Feedback uses `ElMessage`; confirmations use `ElMessageBox.confirm`.
-- Code avoids React, JSX, shadcn, `className`, `function App()`, and `useState`.
+- 需要可运行代码时，生成稿使用 Vue 3 + Element Plus + Tailwind CDN。
+- 代码使用 `// ---TEMPLATE---` 和 `// ---SCRIPT---` 分隔。
+- Vue API 通过全局 `Vue` 对象访问。
+- 反馈用 `ElMessage`；确认用 `ElMessageBox.confirm`。
+- 代码避免 React、JSX、shadcn、`className`、`function App()` 和 `useState`。
 
-## Review Output
+## 评审输出
 
-- Remaining ambiguity is called out as an assumption or issue, not silently filled in.
-- Review issues are tied to page, area, component, field, state, or interaction.
-- Delivery notes say what design or engineering can reuse next.
-- Delivery assets include component inventory, state enums, API assumptions, risks, and Figma redraw notes when the user asks for handoff value.
-- Repair history records feedback classification, affected page IDs, changed artifacts, and reason.
-- Validation commands or visual checks are reported honestly.
+- 剩余歧义以假设或问题呈现，不要悄悄填掉。
+- 评审问题绑定到页面、区域、组件、字段、状态或交互。
+- 交付说明讲清楚设计或研发接下来可以复用什么。
+- 用户要求交付价值时，交付资产包含组件清单、状态枚举、API 假设、风险和 Figma 重绘说明。
+- 修复历史记录反馈分类、受影响 pageId、变更产物和原因。
+- 如实报告验证命令或视觉检查结果。
