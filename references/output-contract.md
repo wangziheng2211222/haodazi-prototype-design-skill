@@ -11,7 +11,8 @@
 - `page-map.json`：页面 ID、页面名、路由标签、页面职责和评审目的。
 - `requirements-map.json`：需求卡、原文位置、解析意图和生成覆盖。
 - `module-review-state.json`：模块分组、方案选择、页面组确认和用户修改意见。
-- `interaction-blueprint.json`：跨页面流程、状态流转、弹窗、抽屉和关键交互。
+- `interaction-blueprint.json`：跨页面流程、状态流转、弹窗、抽屉、关键交互和产品交互蓝图来源。
+- `product-interaction-blueprint-used.md`：使用的产品交互蓝图、fallback 状态、功能落位依据、未采集入口和偏离点。
 - `visual-dna.json`：截图/风格分析，包括主参考、辅助参考、冲突点和 avoidances。
 - `figma-restoration-context.json`：使用 Figma 时记录画框、节点、token、资产和截图上下文。
 - `review-notes.md`：假设、未覆盖问题、覆盖警告和建议评审议程。
@@ -190,6 +191,13 @@
 ```json
 {
   "productPositioning": "string",
+  "source": {
+    "product": "蝉圈圈",
+    "reference": "references/chanquanquan-interaction-blueprint.md",
+    "isFallback": false,
+    "fallbackReason": "",
+    "usedFor": ["module-placement", "entry-position", "navigation-level", "tab-relationship", "dialog-or-drawer"]
+  },
   "navigationModel": {
     "type": "left-sidebar|top-nav|tabs|breadcrumb|mixed",
     "items": [
@@ -225,6 +233,16 @@
       "trigger": "点击待处理线索"
     }
   ],
+  "entryPlacementRules": [
+    {
+      "action": "批量加入邀约池",
+      "pageId": "talent-recommendation",
+      "module": "找达人",
+      "placement": "右侧推荐达人列表操作区",
+      "source": "product-blueprint|requirement|screenshot|figma|assumed",
+      "confidence": "high|medium|low"
+    }
+  ],
   "commonInteractionRules": [
     "删除前二次确认",
     "保存成功后使用 ElMessage 提示"
@@ -236,6 +254,13 @@
     }
   ],
   "visualConstraints": ["紧凑表格", "右侧详情抽屉"],
+  "unknownBlueprintAreas": [
+    {
+      "area": "调整推荐策略弹窗内容",
+      "reason": "蓝图只采集入口位置，未采集弹窗内容。",
+      "handling": "按需求生成合理假设，并标记为 assumed。"
+    }
+  ],
   "fallback": {
     "isDegraded": false,
     "reason": ""

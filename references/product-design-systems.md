@@ -9,6 +9,7 @@
 3. PRD 和需求文本始终是业务逻辑最高优先级来源。
 4. 在 `design-tokens.json` 或最终说明中记录使用了哪个设计规范。
 5. 如果使用 fallback 设计规范，要在假设或交付说明中明确说明。
+6. 设计规范只解决视觉和组件风格；功能入口位置、模块归属、导航层级、Tab 关系和弹窗/抽屉承接，读取 `references/product-interaction-blueprints.md`。
 
 ## 已知产品
 
@@ -27,6 +28,8 @@
 - `designSystem.isFallback`：是否为 fallback。
 - `designSystem.fallbackReason`：fallback 原因。
 - 从该设计规范提取或推导的 design tokens。
+
+如果任务同时涉及功能落位，输出还应在 `interaction-blueprint.json` 或交付说明中记录所用产品交互蓝图；不要用设计规范推断入口层级。
 
 ## 冲突规则
 
