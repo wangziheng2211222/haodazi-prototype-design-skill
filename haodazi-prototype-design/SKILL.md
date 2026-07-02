@@ -21,6 +21,7 @@ Use this skill to produce a shared review object for product, design, and engine
 - Build one coherent product, not isolated screens.
 - Preserve requirement traceability: every requirement card must link back to source text and affected pages.
 - Load product-specific design systems on demand instead of using a generic admin template.
+- Keep screenshot style replication, Figma restoration, review repair, and delivery assets as distinct capability lanes.
 - Prefer precise reviewability over decorative UI.
 - Ask at most one clarification question only when missing information would make the product category, platform, or core flow impossible to infer.
 
@@ -51,6 +52,9 @@ Collect and normalize available inputs:
 If the user provides only a vague idea, infer a compact but complete product scope and state assumptions before outputting artifacts.
 
 Read `references/product-design-systems.md` when the task names a known product family, asks to follow a design规范/design system, or lacks screenshots/Figma but expects a product-native visual style.
+Read `references/capability-lanes.md` when the task includes screenshots, Figma, review repair, visual QA, delivery assets, or any ambiguity about which Haodazi business capability should drive the workflow.
+
+Do not stop for abstract module selection by default. Stop for clarification only when input conflicts make the business goal unclear, a large Figma file has no target frame, or the user explicitly asks to inspect decomposition before generation.
 
 ### 2. Requirement Understanding
 
@@ -95,6 +99,7 @@ If screenshots are provided, extract a visual DNA:
 - Color palette, typography, radius, shadow, border, spacing, and data density.
 - Primary interaction patterns and visible states.
 - Style avoidances.
+- Primary screenshot, auxiliary screenshot, and conflict notes when multiple screenshots are provided.
 
 If Figma context is provided, prefer Figma node/layout/token evidence over screenshot guesses. If both exist and conflict, keep requirement logic from the PRD, detailed visual constraints from Figma, and broader style atmosphere from screenshots.
 
@@ -129,12 +134,16 @@ Before final delivery, check:
 
 If flaws are found, repair affected pages or record explicit review issues. Do not hide gaps by claiming they are complete.
 
+When repairing after user feedback, classify the feedback first: requirement gap, visual deviation, interaction issue, field/state issue, missing page, or delivery-asset request. Repair only the affected page, region, interaction, or style token unless the issue truly changes shared product structure.
+
 ### 7. Delivery
 
 Return the prototype with:
 
 - Where the user can open it.
 - What pages were generated.
+- What design references were used: screenshots, Figma frames, product design system, or fallback.
+- What delivery assets were produced or intentionally skipped.
 - What review issues or assumptions remain.
 - What validation was run.
 

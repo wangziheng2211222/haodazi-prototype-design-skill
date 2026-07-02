@@ -21,6 +21,8 @@ Use this before final delivery or when asked to review a generated prototype.
 - Create/edit flows return to a clear destination.
 - Approval, publishing, payment, or other state machines show next actions.
 - Mock data stays realistic and internally consistent.
+- The interaction blueprint covers primary flows, key branches, dialogs, drawers, confirmations, and return destinations.
+- A generated change or repair does not mutate unrelated pages unless shared navigation, shared fields, or shared states require it.
 
 ## Visual Coherence
 
@@ -32,6 +34,9 @@ Use this before final delivery or when asked to review a generated prototype.
 - Components share one design language across pages.
 - Page titles, table density, form rhythm, and button hierarchy stay consistent.
 - Text does not overflow buttons, tables, cards, sidebars, or navigation.
+- Multi-screenshot tasks identify the primary reference, auxiliary references, and conflicts.
+- Figma tasks prefer frame/node tokens, Auto Layout, asset manifest, and frame screenshots over screenshot-only inference.
+- If Figma is the baseline, Element Plus components must not override the Figma layout, spacing, color, or component position.
 
 ## Generated Runtime
 
@@ -46,4 +51,6 @@ Use this before final delivery or when asked to review a generated prototype.
 - Remaining ambiguity is called out as an assumption or issue, not silently filled in.
 - Review issues are tied to page, area, component, field, state, or interaction.
 - Delivery notes say what design or engineering can reuse next.
+- Delivery assets include component inventory, state enums, API assumptions, risks, and Figma redraw notes when the user asks for handoff value.
+- Repair history records feedback classification, affected page IDs, changed artifacts, and reason.
 - Validation commands or visual checks are reported honestly.
